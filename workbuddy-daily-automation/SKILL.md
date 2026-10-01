@@ -44,7 +44,7 @@ allowed-tools: Bash,Read,Edit,Write
 用 Bash 工具**同步执行并等待命令结束**（不要 `&`、不要后台、不要提前返回），调用包装器：
 
 ```bash
-python "C:/Users/Administrator/.workbuddy/skills/workbuddy-daily-automation/scripts/run_daily.py"
+python "<技能目录>/scripts/run_daily.py"
 ```
 
 > 用哪个 Python 调包装器都行（连缺 `requests` 的托管 Python 也可以）——
@@ -53,8 +53,11 @@ python "C:/Users/Administrator/.workbuddy/skills/workbuddy-daily-automation/scri
 或等价地直接跑主脚本（包装器只是加了保代理与结构化摘要）：
 
 ```bash
-cd "D:/WorkbuddyDoc/2026-09-22-15-41-36" && "C:/ProgramData/Anaconda3/python.exe" workbuddy_daily.py
+python "<工作区>/workbuddy_daily.py"        # 工作区用 WBDAILY_WORKSPACE 指定，默认见包装器
 ```
+
+> 主脚本随技能包一同分发（`scripts/workbuddy_daily.py`）；包装器默认在
+> 你本机的工作区里找 `workbuddy_daily.py`，可用环境变量 `WBDAILY_WORKSPACE` 指定其所在目录。
 
 > **实测坑（别踩）**：托管 Python 3.13.12 **没装 `requests`**，用它跑主脚本会直接
 > `ModuleNotFoundError: No module named 'requests'`。包装器会按「能 `import requests`」
@@ -113,7 +116,7 @@ cd "D:/WorkbuddyDoc/2026-09-22-15-41-36" && "C:/ProgramData/Anaconda3/python.exe
 ## 五、记忆与历史
 
 - 每轮执行后追加一行摘要到
-  `D:/WorkbuddyDoc/2026-09-22-15-41-36/.workbuddy/memory/automations/<automation-id>/memory.md`（保留历史记录，便于跨轮对比）。
+  `<工作区>/.workbuddy/memory/automations/<automation-id>/memory.md`（保留历史记录，便于跨轮对比）。
 - 当日工作日志追加到 `.workbuddy/memory/YYYY-MM-DD.md`（**追加，不覆盖**）。
 - 判断「任务是否正常」**只看 🏁 行与退出码**，不看 signin.py。
 
@@ -124,4 +127,4 @@ cd "D:/WorkbuddyDoc/2026-09-22-15-41-36" && "C:/ProgramData/Anaconda3/python.exe
 - `@references/credit-tasks.md` —— **积分任务怎么完成**：三条通路、逐任务 code 与完成方式
   （哪些自动、哪些需真实交互、哪些受 23:00–08:00 窗口限制）、需人工清单、脚本侧工程坑、归因速查。
 - `@references/runbook.md` —— 完整执行清单、日志逐行解读、分诊决策树、历史口径样本。
-- 主脚本 `D:/WorkbuddyDoc/2026-09-22-15-41-36/workbuddy_daily.py`（2540 行，勿改其业务逻辑）。
+- 主脚本 `scripts/workbuddy_daily.py`（2540 行，随技能包分发，勿改其业务逻辑）。

@@ -25,12 +25,20 @@ import re
 import subprocess
 import sys
 
-DEFAULT_WORKSPACE = r"D:/WorkbuddyDoc/2026-09-22-15-41-36"
+# 默认工作区：优先取环境变量；否则回退到「本仓库内主脚本所在目录」的同级目录。
+# 本机原工作区路径不再硬编码，避免泄露个人目录结构。
+DEFAULT_WORKSPACE = os.environ.get("WBDAILY_WORKSPACE", "").strip() or os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))
+)
 DEFAULT_SCRIPT = "workbuddy_daily.py"
 # 主脚本依赖 requests；托管 Python 常缺该包，故按「探测可用」而非「写死顺序」选解释器。
 REQUIRED_MODULE = "requests"
-_ANACONDA = r"C:/ProgramData/Anaconda3/python.exe"
-_MANAGED_GLOB = r"C:/Users/Administrator/.workbuddy/binaries/python/versions/*/python.exe"
+# Anaconda 是常见备选解释器；不存在时会被 _can_import 自动跳过，不影响其它候选。
+_ANACONDA = os.environ.get("WBDAILY_ANACONDA_PYTHON", "").strip() or r"C:/ProgramData/Anaconda3/python.exe"
+_MANAGED_GLOB = os.path.join(
+    os.path.expanduser("~"),
+    ".workbuddy", "binaries", "python", "versions", "*", "python.exe",
+)
 
 ERROR_KEYWORDS = (
     "登录态已失效",

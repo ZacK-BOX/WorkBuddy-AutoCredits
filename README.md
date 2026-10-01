@@ -59,12 +59,15 @@ python ~/.workbuddy/skills/workbuddy-daily-automation/scripts/run_daily.py
 
 ### 依赖与前提
 
-- **主脚本** `workbuddy_daily.py` 需另行放置于工作区（本仓库不包含其源码，业务逻辑较重且与本机环境强耦合）。
-- 需要一份**本机明文令牌库** `wb_refresh_tokens.json`（脚本自续期、自动回写；请勿提交到版本库）。
+- 仓库已自带**主脚本** `scripts/workbuddy_daily.py`（2540 行，全流程业务逻辑），**开箱即用、无需额外下载**。
+- 需要一份**本机明文令牌库** `wb_refresh_tokens.json`（脚本首次运行时可从环境变量
+  `WORKBUDDY_REFRESH_TOKEN` 自举生成，之后自动续期、自动回写；**请勿提交到版本库**）。
 - Python 3.x 且已安装 `requests`。
 
-> ⚠️ **安全提醒**：`wb_refresh_tokens.json` 含有明文 access token / refresh token，
-> 属于敏感凭据。本仓库的 `.gitignore` 已将其排除，请勿手动提交。
+> ⚠️ **安全提醒**：`wb_refresh_tokens.json` 与 `WORKBUDDY_ACCESS_TOKEN.txt` 含有明文
+> access token / refresh token，属于敏感凭据。本仓库的 `.gitignore` 已将其排除，请勿手动提交。
+>
+> 脚本本身**不含任何账号、手机号、Token 或设备信息**——所有凭据均由环境变量注入或运行时生成。
 
 ### 文档结构
 
@@ -72,7 +75,8 @@ python ~/.workbuddy/skills/workbuddy-daily-automation/scripts/run_daily.py
 workbuddy-daily-automation/
 ├── SKILL.md                    # 技能主入口：触发条件、执行口径、汇报口径、排障边界
 ├── scripts/
-│   └── run_daily.py            # 执行包装器：保代理 + 同步等待 + 结构化摘要
+│   ├── run_daily.py            # 执行包装器：保代理 + 同步等待 + 结构化摘要
+│   └── workbuddy_daily.py      # 主脚本：签到 + 18 项成长任务 + 8 项玩法 + 自动领奖
 └── references/
     ├── credit-tasks.md         # 积分任务完成机制：三条通路、逐任务 code、需人工清单
     └── runbook.md              # 执行手册：日志逐行解读、分诊决策树、汇报模板

@@ -1,5 +1,6 @@
 # 敏感凭据 —— 绝不可提交
 wb_refresh_tokens.json
+WORKBUDDY_ACCESS_TOKEN.txt
 *refresh_token*
 *.token
 .env

@@ -8,8 +8,8 @@
 
 | 项 | 值 | 备注 |
 |---|---|---|
-| 工作区 | `D:/WorkbuddyDoc/2026-09-22-15-41-36` | 主脚本与令牌库所在 |
-| 主脚本 | `workbuddy_daily.py`（v2.1，2540 行） | 业务逻辑勿改 |
+| 工作区 | 由 `WBDAILY_WORKSPACE` 指定（包装器默认为本机原工作区） | 主脚本与令牌库所在 |
+| 主脚本 | `scripts/workbuddy_daily.py`（v2.1，2540 行） | 随技能包分发，业务逻辑勿改 |
 | 令牌库 | 同目录 `wb_refresh_tokens.json` | 明文 AT/RT，脚本自续期、自动回写 |
 | 已废弃 | `signin.py`（1315 行） | 加密凭据后降级为只读监控；**不要调用** |
 | 解释器 | `C:/ProgramData/Anaconda3/python.exe` | 与托管 3.13.12 均可 |
