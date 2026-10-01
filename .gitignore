@@ -1,0 +1,24 @@
+# 敏感凭据 —— 绝不可提交
+wb_refresh_tokens.json
+*refresh_token*
+*.token
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 日志与运行时产物
+*.log
+logs/
+.workbuddy/memory/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
