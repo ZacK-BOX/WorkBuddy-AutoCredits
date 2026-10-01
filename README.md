@@ -1,4 +1,4 @@
-# WorkBuddy Toolkit
+# WorkBuddy AutoCredits
 
 > 一组面向 [WorkBuddy](https://www.workbuddy.cn) 的自动化技能（Skills）合集。
 > A collection of automation skills for WorkBuddy.
@@ -36,10 +36,10 @@
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/ZacK-BOX/WorkBuddy-Toolkit.git
+git clone https://github.com/ZacK-BOX/WorkBuddy-AutoCredits.git
 
 # 2. 复制技能到本地技能目录（Windows 默认路径）
-cp -r WorkBuddy-Toolkit/workbuddy-daily-automation \
+cp -r WorkBuddy-AutoCredits/workbuddy-daily-automation \
       ~/.workbuddy/skills/
 ```
 
